@@ -1,0 +1,130 @@
+/* Reset & base */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #cce4f7; /* biru muda */
+  color: #0e5bbf; /* biru gelap untuk teks */
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* Hero section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.hero img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.hero img:hover {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  font-style: italic;
+  margin-top: 10px;
+  color: #1e3a8a;
+}
+
+/* CTA buttons */
+.cta {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta a {
+  padding: 12px 28px;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cta a:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.cta .pump {
+  background-color: #2563eb; /* biru */
+}
+
+.cta .jupiter {
+  background-color: #16a34a; /* hijau */
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #0e5bbf;
+}
+
+footer .links {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+footer .links a {
+  color: #0e5bbf;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer .links a:hover {
+  text-decoration: underline;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#starsCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}

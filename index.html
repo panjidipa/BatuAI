@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BATUAI Token</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Canvas background */
+    #snowCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* tidak mengganggu klik */
+      z-index: 0; /* di belakang konten */
+    }
+  </style>
+</head>
+<body class="bg-blue-200 text-center min-h-screen flex flex-col items-center justify-start">
+
+  <!-- Canvas untuk animasi salju -->
+  <canvas id="snowCanvas"></canvas>
+
+  <!-- Navigation Menu -->
+  <section class="w-full bg-blue-200 py-6 relative z-10">
+    <div class="max-w-4xl mx-auto bg-white rounded-full shadow-md px-6 py-3 flex justify-center gap-6 flex-wrap">
+      <a href="#build" class="text-blue-700 font-semibold hover:underline">Build</a>
+      <a href="#ecosystem" class="text-blue-700 font-semibold hover:underline">Ecosystem</a>
+      <a href="#foundation" class="text-blue-700 font-semibold hover:underline">Foundation</a>
+      <a href="#about" class="text-blue-700 font-semibold hover:underline">About</a>
+      <a href="#bridge" class="text-blue-700 font-semibold hover:underline">Bridge</a>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col items-center justify-center py-20 px-4 relative z-10">
+    <img src="gambar 0.png"
+         alt="BATUAI Mascot" 
+         class="w-48 h-auto rounded-full shadow-lg mb-6 hover:scale-105 transition duration-300">
+    <h1 class="text-6xl font-extrabold text-blue-900 tracking-tight">BATUAI</h1>
+    <p class="mt-4 text-xl italic text-blue-800 leading-relaxed">Solid as a Rock. Meme as Hell.</p>
+
+    <!-- CTA Buttons -->
+    <div class="mt-8 flex gap-4 flex-wrap justify-center">
+      <a href="https://pump.fun/" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:scale-105 transition font-semibold tracking-tight">Buy BATUAI on Pump.fun</a>
+      <a href="https://jup.ag/swap" class="bg-green-600 text-white px-6 py-3 rounded-full shadow hover:scale-105 transition font-semibold tracking-tight">Trade BATUAI on Jupiter</a>
+    </div>
+  </section>
+
+  <!-- Build Section -->
+  <section id="build" class="w-full bg-white py-20 px-6 relative z-10">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      
+      <!-- Text content (left) -->
+      <div>
+        <h2 class="text-4xl font-semibold text-blue-900 mb-6 tracking-tight">Build</h2>
+        <p class="text-blue-800 text-base leading-relaxed mb-4">
+          This is the Build section. Here you'll find developer documentation, contract links, 
+          and guides on how to contribute to the BATUAI ecosystem.
+        </p>
+        <p class="text-blue-700 text-base leading-relaxed mb-6">
+          This space is dedicated to developers and community members who want to help build 
+          BATUAI. All technical information and contribution steps will be placed here.
+        </p>
+
+        <!-- Kotak-kotak card -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <!-- Card 1 -->
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow hover:shadow-md transition text-center">
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Developer Docs</h3>
+            <p class="text-blue-700 text-sm leading-relaxed">
+              How to integrate BATUAI into your app with clear documentation and examples.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow hover:shadow-md transition text-center">
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Contract Links</h3>
+            <p class="text-blue-700 text-sm leading-relaxed">
+              Mint and LP addresses on Solscan for tracking BATUAI smart contracts.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow hover:shadow-md transition text-center">
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Contribution Guide</h3>
+            <p class="text-blue-700 text-sm leading-relaxed">
+              Steps to join the BATUAI community and contribute to its growth.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow hover:shadow-md transition text-center">
+            <h3 class="text-lg font-semibold text-blue-900 mb-2">Tools</h3>
+            <p class="text-blue-700 text-sm leading-relaxed">
+              APIs, SDKs, and useful scripts to help developers build with BATUAI.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:scale-105 transition font-semibold tracking-tight">
+            BATUAI Developer Docs
+          </a>
+        </div>
+      </div>
+
+      <!-- Image (right) -->
+      <div class="flex justify-center">
+        <img src="gambar 1.png"
+             alt="BATUAI Developer Illustration" 
+             class="w-48 h-auto rounded-xl shadow-lg hover:scale-105 transition duration-300">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- JavaScript untuk animasi salju -->
+  <script>
+    const canvas = document.getElementById("snowCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const snowflakes = [];
+    for (let i = 0; i < 100; i++) {
+      snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 3 + 1,
+        speedY: Math.random() * 1 + 0.5,
+        speedX: Math.random() * 0.5 - 0.25
+      });
+    }
+
+    function drawSnow() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+
+      for (let flake of snowflakes) {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+
+      for (let flake of snowflakes) {
+        flake.y += flake.speedY;
+        flake.x += flake.speedX;
+
+        if (flake.y > canvas.height) {
+          flake.y = -flake.radius;
+          flake.x = Math.random() * canvas.width;
+        }
+      }
+
+      requestAnimationFrame(drawSnow);
+    }
+
+    drawSnow();
+  </script>
+<!-- Ecosystem Section -->
+<section id="ecosystem" class="w-full bg-blue-50 py-20 px-6 relative z-10">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-4xl font-semibold text-blue-900 tracking-tight">Ecosystem</h2>
+    <p class="mt-4 text-blue-700 text-base leading-relaxed max-w-2xl mx-auto">
+      The BATUAI ecosystem is designed to be transparent, fun, and community-driven. 
+      It connects holders, developers, and creators through a solid foundation of 
+      meme culture, utility, and growth.
+    </p>
+  </div>
+
+  <!-- Ecosystem Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    
+    <!-- Card 1: Community -->
+    <div class="bg-white border border-blue-200 rounded-xl p-8 shadow hover:shadow-lg transition text-left">
+      <div class="flex items-center mb-4">
+        <span class="text-3xl">👥</span>
+        <h3 class="ml-3 text-xl font-semibold text-blue-900">Community</h3>
+      </div>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        A strong meme-driven community that powers BATUAI. Holders are the heart of 
+        the ecosystem, shaping its growth and narrative.
+      </p>
+    </div>
+
+    <!-- Card 2: Utility -->
+    <div class="bg-white border border-blue-200 rounded-xl p-8 shadow hover:shadow-lg transition text-left">
+      <div class="flex items-center mb-4">
+        <span class="text-3xl">⚙️</span>
+        <h3 class="ml-3 text-xl font-semibold text-blue-900">Utility</h3>
+      </div>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Beyond memes, BATUAI offers integrations with DeFi platforms, staking, and 
+        community rewards to ensure long-term engagement.
+      </p>
+    </div>
+
+    <!-- Card 3: Transparency -->
+    <div class="bg-white border border-blue-200 rounded-xl p-8 shadow hover:shadow-lg transition text-left">
+      <div class="flex items-center mb-4">
+        <span class="text-3xl">🔍</span>
+        <h3 class="ml-3 text-xl font-semibold text-blue-900">Transparency</h3>
+      </div>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Open-source contracts, clear tokenomics, and visible liquidity pools. 
+        BATUAI is built on trust and clarity for all participants.
+      </p>
+    </div>
+
+    <!-- Card 4: Partnerships -->
+    <div class="bg-white border border-blue-200 rounded-xl p-8 shadow hover:shadow-lg transition text-left">
+      <div class="flex items-center mb-4">
+        <span class="text-3xl">🤝</span>
+        <h3 class="ml-3 text-xl font-semibold text-blue-900">Partnerships</h3>
+      </div>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Collaborations with meme creators, DeFi projects, and NFT artists to expand 
+        BATUAI’s reach across Web3.
+      </p>
+    </div>
+
+    <!-- Card 5: Growth -->
+    <div class="bg-white border border-blue-200 rounded-xl p-8 shadow hover:shadow-lg transition text-left">
+      <div class="flex items-center mb-4">
+        <span class="text-3xl">📈</span>
+        <h3 class="ml-3 text-xl font-semibold text-blue-900">Growth</h3>
+      </div>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        A roadmap focused on scaling the ecosystem with new features, 
+        community-driven initiatives, and global exposure.
+      </p>
+    </div>
+
+    <!-- Card 6: Culture -->
+    <div class="bg-white border border-blue-200 rounded-xl p-8 shadow hover:shadow-lg transition text-left">
+      <div class="flex items-center mb-4">
+        <span class="text-3xl">🎨</span>
+        <h3 class="ml-3 text-xl font-semibold text-blue-900">Culture</h3>
+      </div>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Rooted in local pride and meme culture, BATUAI blends fun, creativity, 
+        and transparency into every interaction.
+      </p>
+    </div>
+  </div>
+</section>
+<section id="foundation" class="w-full bg-gradient-to-br from-blue-400 via-indigo-800 to-purple-700 py-20 px-6 relative z-10 text-white">
+  <div class="max-w-4xl mx-auto text-center mb-16 fade-in">
+    <h2 class="text-4xl font-bold tracking-tight">Foundation</h2>
+    <p class="mt-4 text-blue-100 text-base leading-relaxed">
+      The BATUAI Foundation is the backbone of our token. It defines our vision, mission, and values, ensuring transparency and sustainability for the community.
+    </p>
+  </div>
+
+  <div class="max-w-3xl mx-auto space-y-12">
+    <div class="flex flex-col items-center text-center fade-in">
+      <div class="text-5xl mb-4">🌍</div>
+      <h3 class="text-2xl font-semibold mb-2">Vision</h3>
+      <p class="text-blue-100 text-sm leading-relaxed max-w-md">
+        To build a global meme token that blends fun, transparency, and utility.
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center text-center fade-in">
+      <div class="text-5xl mb-4">🚀</div>
+      <h3 class="text-2xl font-semibold mb-2">Mission</h3>
+      <p class="text-blue-100 text-sm leading-relaxed max-w-md">
+        Drive adoption through community initiatives, partnerships, and innovative features.
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center text-center fade-in">
+      <div class="text-5xl mb-4">💎</div>
+      <h3 class="text-2xl font-semibold mb-2">Values</h3>
+      <p class="text-blue-100 text-sm leading-relaxed max-w-md">
+        Transparency, inclusivity, and creativity guide BATUAI's growth and trust.
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center text-center fade-in">
+      <div class="text-5xl mb-4">⚖️</div>
+      <h3 class="text-2xl font-semibold mb-2">Governance</h3>
+      <p class="text-blue-100 text-sm leading-relaxed max-w-md">
+        Community-led governance ensures every holder has a voice in shaping BATUAI's future.
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center text-center fade-in">
+      <div class="text-5xl mb-4">🌱</div>
+      <h3 class="text-2xl font-semibold mb-2">Sustainability</h3>
+      <p class="text-blue-100 text-sm leading-relaxed max-w-md">
+        Long-term growth supported by fair tokenomics and transparent liquidity.
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center text-center fade-in">
+      <div class="text-5xl mb-4">✨</div>
+      <h3 class="text-2xl font-semibold mb-2">Innovation</h3>
+      <p class="text-blue-100 text-sm leading-relaxed max-w-md">
+        Experimenting with new features, interactive experiences, and creative branding.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- Bridge Section -->
+<section id="bridge" class="w-full bg-blue-200 py-20 px-6 relative z-10 text-blue-900">
+  <div class="max-w-4xl mx-auto text-center fade-in">
+    <h2 class="text-4xl font-bold tracking-tight">Bridge</h2>
+    <p class="mt-4 text-blue-800 text-base leading-relaxed">
+      BATUAI Bridge connects our token seamlessly across multiple chains, enabling fast, secure, and transparent transfers.
+    </p>
+  </div>
+  <!-- Cards -->
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 mt-12">
+    
+    <!-- Card 1 -->
+    <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 fade-in">
+      <img src="gambar 2.png" alt="Speed Icon" class="w-16 h-16 mx-auto mb-4">
+      <h3 class="text-xl font-semibold mb-2">Speed</h3>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Instant cross-chain transfers with minimal fees.
+      </p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 fade-in">
+      <img src="gambar 3.png" alt="Security Icon" class="w-16 h-16 mx-auto mb-4">
+      <h3 class="text-xl font-semibold mb-2">Security</h3>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Audited smart contracts ensure safe bridging.
+      </p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 fade-in">
+      <img src="gambar 4.png" alt="Accessibility Icon" class="w-16 h-16 mx-auto mb-4">
+      <h3 class="text-xl font-semibold mb-2">Accessibility</h3>
+      <p class="text-blue-700 text-sm leading-relaxed">
+        Bridge BATUAI easily across Solana, Ethereum, and more.
+      </p>
+    </div>
+  </div>
+</section>
+<canvas id="starsCanvas" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
+<!-- Footer Section -->
+<footer class="mt-auto py-20 bg-gradient-to-br from-blue- via-indigo-700 to-purple-700 text-blue-900 relative z-10">
+  <div class="text-center mb-4">
+    <p class="text-sm font-medium">Disclaimer: BATUAI is a meme token with no intrinsic value. DYOR.</p>
+  </div>
+
+  <!-- Social Links -->
+  <div class="flex justify-center gap-8 items-center">
+    
+    <!-- Twitter -->
+    <a href="https://x.com/BatuuAi/status/2007597720345948327?s=20" target="_blank" class="hover:scale-110 transition">
+      <svg class="w-6 h-6 fill-b hover:fill-blue-300" viewBox="0 0 24 24">
+        <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.5v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+      </svg>
+    </a>
+
+    <!-- Telegram -->
+    <a href="https://t.me/+eTVfCLiOA6M1ZDA9" target="_blank" class="hover:scale-110 transition">
+      <svg class="w-6 h-6 fill-black hover:fill-blue-300" viewBox="0 0 24 24">
+        <path d="M9.999 15.999l-.666 4.001c.948 0 1.356-.407 1.856-.897l2.232-2.153 4.632 3.377c.846.586 1.45.281 1.666-.781l3.001-14.001c.25-1.167-.417-1.625-1.333-1.291L2.999 9.999c-1.25.5-1.25 1.208-.208 1.541l4.999 1.625 11.5-7.208-9.291 9.042z"/>
+      </svg>
+    </a>
+
+    <!-- Solscan -->
+    <a href="https://solscan.io/token/BATUAI" target="_blank" class="hover:scale-110 transition">
+      <svg class="w-6 h-6 fill-black hover:fill-blue-300" viewBox="0 0 24 24">
+        <path d="M3 6.5a1 1 0 011-1h16a1 1 0 01.707 1.707l-3 3a1 1 0 01-.707.293H4a1 1 0 01-1-1v-3zm0 7a1 1 0 011-1h16a1 1 0 01.707 1.707l-3 3a1 1 0 01-.707.293H4a1 1 0 01-1-1v-3z"/>
+      </svg>
+    </a>
+  </div>
+</body>
+</html>
